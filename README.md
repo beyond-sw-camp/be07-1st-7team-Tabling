@@ -10,6 +10,7 @@
 # ER Diagram
 
 # ERD
+![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/301f6e17-0248-40ad-9f4f-41770ddf9d06)
 
 # 프로젝트 시연
 
