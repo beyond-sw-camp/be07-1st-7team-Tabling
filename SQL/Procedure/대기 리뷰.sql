@@ -26,8 +26,6 @@ END //
 
 DELIMITER ;
 
-INSERT INTO `group` (name, created_time) VALUES ('테스트 그룹', CURRENT_TIMESTAMP);
-
 INSERT INTO waiting (store_id, user_id, group_id, status, created_time) VALUES (1, 1, 1, '완료', CURRENT_TIMESTAMP);
 
 CALL AddReview(1, 1, '좋은 장소입니다!', '음식과 서비스가 정말 좋았어요.', '5');
