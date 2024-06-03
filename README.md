@@ -16,8 +16,5 @@
 ![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/ba9c4e5e-bc79-4143-b88b-7424cdc134b7)
 
 # 프로젝트 시연
+[가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/4bfb1215-81be-4c92-ad88-3b45c6cc1b83)
 
-<details>
-  <summary>가게 생성</summary>
-![가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/4bfb1215-81be-4c92-ad88-3b45c6cc1b83)
-</details>
