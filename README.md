@@ -4,7 +4,7 @@
 👻이한아 👻박우진 👻이혜진 👻최세호 👻표웅기
 
 # 프로젝트 개요
- [명세서](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/요구사항%20명세서.pdf)
+[명세서](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/Software%20Requirements%20Specification.pdf)
  [main](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/README.md)
 # 프로젝트 요구사항 정의서
 [요구사항 명세서.pdf](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/요구사항%20명세서.pdf)
