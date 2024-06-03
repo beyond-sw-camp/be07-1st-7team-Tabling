@@ -13,8 +13,19 @@
 ![ER_DIAGRAM](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/012edcd3-04dc-4ae3-bb4f-ec307c077eb5)
 
 # ERD
-![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/a28f830a-d194-419d-a79a-c06c9f7ad2ec)
+![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/ba9c4e5e-bc79-4143-b88b-7424cdc134b7)
 
 # 프로젝트 시연
+가게 생성
+![가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/50abbe12-c6d5-4e46-b6cd-ad25c0de214c)
+
+관심매장 조회
+![관심매장조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/6eeb3535-3887-4782-aa58-1707e7d57077)
+
+대기
+![대기](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/c3aee298-769d-490d-a07f-34228b199097)
+
+예약 생성 && 개인 예약 조회
+![예약 생성_개인 예약 조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/309097bc-5d61-417b-b65c-aa0c0093a682)
 
 

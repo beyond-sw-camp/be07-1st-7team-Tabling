@@ -198,7 +198,7 @@ CREATE TABLE review (
 id bigint auto_increment primary key, 
 store_id BigInt NOT NULL, 
 user_id BigInt NOT NULL, 
-title varchar(50) NOT NULL, 
+title varchar(50), 
 content varchar(50) NOT NULL,
 rating Decimal NOT NULL,
 helpful BigInt NULL,

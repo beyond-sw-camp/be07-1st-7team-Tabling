@@ -1,54 +1,60 @@
 -- 1. 지역별 매장 리스트 조회
 DELIMITER //
-CREATE PROCEDURE 지역별매장리스트조회(in do varchar(50), in si varchar(50))
+CREATE PROCEDURE 지역별매장리스트조회(in do varchar(50), in si varchar(50), in gu varchar(50))
 BEGIN
-    IF do is null then -- 전국
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+    IF gu !='' then
+        select s.address_do, s.address_si, s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+        where so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')
+        or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end
+        and s.address_gu=gu
 		and so.days = DAYNAME(NOW());
-    ELSEIF si is null then -- 도, 도 전체
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+    ELSEIF si !='' then
+        select s.address_do, s.address_si, s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+        where (so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end)
+        and s.address_si=si
+        and so.days = DAYNAME(NOW());
+	ELSEIF do != '' then
+        select s.address_do, s.address_si, s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
+		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
+        where (so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end)
         and s.address_do = do
-		and so.days = DAYNAME(NOW());
-    else -- 도,시
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+        and so.days = DAYNAME(NOW());
+    else
+        select s.address_do, s.address_si, s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
-        and s.address_do = do and s.address_si = si
+        where (so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end)
 		and so.days = DAYNAME(NOW());
     end if;
 END
 // DELIMITER ;
-
 -- 2. 카테고리별 매장 리스트 조회
-DELIMITER //
-CREATE PROCEDURE 카테고리매장리스트조회(in name varchar(50), in val varchar(60))
-BEGIN
-    IF name IS not NULL THEN -- name ,val
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
-		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id, category c, store_category sc
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
-		and c.category_name = name and content = val
-		and so.days = DAYNAME(NOW());
-    ELSEif val is not null then -- val
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
-		from store s, store_open_end_break so,store_image si, category c, store_category sc
-		where s.id = so.store_id and s.id = si.store_id and s.id=sc.store_id and c.id=sc.category_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
-		and content = val
-		and so.days = DAYNAME(NOW());
-	else -- 전체
-		select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
-		from store s, store_open_end_break so,store_image si, category c, store_category sc
-		where s.id = so.store_id and s.id = si.store_id and s.id=sc.store_id and c.id=sc.category_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
-		and so.days = DAYNAME(NOW());
-    END IF;
-END
-// DELIMITER ;
+-- DELIMITER //
+-- CREATE PROCEDURE 카테고리매장리스트조회(in name varchar(50), in val varchar(60))
+-- BEGIN
+--     IF name IS not NULL THEN -- name ,val
+--         select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+-- 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id, category c, store_category sc
+-- 		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+-- 		and c.category_name = name and content = val
+-- 		and so.days = DAYNAME(NOW());
+--     ELSEif val is not null then -- val
+--         select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+-- 		from store s, store_open_end_break so,store_image si, category c, store_category sc
+-- 		where s.id = so.store_id and s.id = si.store_id and s.id=sc.store_id and c.id=sc.category_id
+-- 		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+-- 		and content = val
+-- 		and so.days = DAYNAME(NOW());
+-- 	else -- 전체
+-- 		select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+-- 		from store s, store_open_end_break so,store_image si, category c, store_category sc
+-- 		where s.id = so.store_id and s.id = si.store_id and s.id=sc.store_id and c.id=sc.category_id
+-- 		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+-- 		and so.days = DAYNAME(NOW());
+--     END IF;
+-- END
+-- // DELIMITER ;
 -- 3. 리뷰 생성
 DELIMITER //
 CREATE PROCEDURE 리뷰작성(in user_email varchar(50), in 별점 float, in 타이틀 varchar(60), in 내용 varchar(100), in 이미지경로 varchar(100))
