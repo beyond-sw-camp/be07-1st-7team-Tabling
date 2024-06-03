@@ -144,7 +144,7 @@ CREATE TABLE waiting(
 CREATE TABLE `menu_category` (
 `id` BIGINT auto_increment,
 `store_id` BIGINT NOT NULL,
-`name` varchar(50),
+`name` varchar(50) NOT NULL,
 `discription` VARCHAR(100),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`store_id`) REFERENCES `store` (`id`) on delete cascade on update cascade
