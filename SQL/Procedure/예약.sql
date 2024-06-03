@@ -3,20 +3,23 @@ DELIMITER //
 CREATE PROCEDURE 지역별매장리스트조회(in do varchar(50), in si varchar(50))
 BEGIN
     IF do is null then -- 전국
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+        where so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')
+        or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end
 		and so.days = DAYNAME(NOW());
     ELSEIF si is null then -- 도, 도 전체
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+        where so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')
+        or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end
         and s.address_do = do
 		and so.days = DAYNAME(NOW());
     else -- 도,시
-        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, si.image_path
+        select s.name, s.ratings, s.remote_tabling, s.onsite_tabling, so.days, si.image_path
 		from (store s join store_open_end_break so on s.id=so.store_id) left join store_image si on s.id = si.store_id
-		and so.start <= TIME(NOW()) and TIME(NOW())<= ifnull(break_start,'23:59:59') and ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) <= so.end
+        where so.start <= TIME(NOW()) and  TIME(NOW())<= ifnull(break_start,'23:59:59')
+        or ifnull(break_end,'00:00:00') <= TIME(NOW()) and TIME(NOW()) < so.end
         and s.address_do = do and s.address_si = si
 		and so.days = DAYNAME(NOW());
     end if;
