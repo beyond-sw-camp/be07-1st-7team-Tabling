@@ -8,6 +8,7 @@
 # 프로젝트 요구사항 정의서
 
 # ER Diagram
+![ER_DIAGRAM](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/012edcd3-04dc-4ae3-bb4f-ec307c077eb5)
 
 # ERD
 ![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/301f6e17-0248-40ad-9f4f-41770ddf9d06)
