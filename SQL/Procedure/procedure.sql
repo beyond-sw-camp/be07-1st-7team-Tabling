@@ -200,3 +200,119 @@ BEGIN
     
 END
 // DELIMITER ;
+-- 공지사항 전체조회
+DELIMITER //
+create procedure 공지사항전체조회()
+begin
+    select a.announcement_Id as no, a.title as 제목, a.content as 내용 from announcement a;
+END
+//DELIMITER ;
+
+-- 공지사항 번호로 조회
+DELIMITER //
+create procedure 공지사항번호조회(in n int)
+begin
+    select a.announcement_Id as no,a.title as 제목, a.content as 내용 from announcement a where a.announcement_Id = n;
+END
+//DELIMITER ;
+DELIMITER //
+
+CREATE PROCEDURE AddReview(
+    IN user_id BIGINT,
+    IN store_id BIGINT,
+    IN title VARCHAR(50),
+    IN content VARCHAR(50),
+    IN rating ENUM('1', '2', '3', '4', '5')
+)
+BEGIN
+    DECLARE waiting_status ENUM('대기중', '완료', '취소');
+
+    -- 사용자가 완료 상태인지 확인
+    SELECT status INTO waiting_status
+    FROM waiting
+    WHERE user_id = user_id AND store_id = store_id AND status = '완료';
+
+    -- 대기 상태가 완료인 경우 리뷰 추가
+    IF waiting_status = '완료' THEN
+        INSERT INTO review (store_id, user_id, title, content, rating, created_time)
+        VALUES (store_id, user_id, title, content, rating, CURRENT_TIMESTAMP);
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '사용자가 완료 상태가 아니거나 해당 레코드를 찾을 수 없습니다.';
+    END IF;
+END //
+
+DELIMITER ;
+
+INSERT INTO waiting (store_id, user_id, group_id, status, created_time) VALUES (1, 1, 1, '완료', CURRENT_TIMESTAMP);
+
+
+select *
+from review;
+-- 주변 맛집 검색
+DELIMITER //
+CREATE PROCEDURE 주변맛집검색(in 경도 decimal(7,4),in 위도 decimal(7,4),in 반경 int)
+BEGIN
+    SET @lat = 위도; 
+    SET @lon = 경도; 
+    SET @radius = 반경; 
+    SELECT name, address_si, address_gu, detail_address, phone,
+       round(ST_Distance_Sphere(location, POINT(@lon, @lat)),0) AS distance
+    FROM store
+    WHERE ST_Distance_Sphere(location, POINT(@lon, @lat)) <= @radius
+    ORDER BY distance;
+END //
+DELIMITER ;
+
+-- 음식점저장
+DELIMITER //
+CREATE PROCEDURE 음식점저장(in 사용자id bigint,in 음식점id bigint)
+BEGIN
+    insert into wishlist(user_id,store_id) 
+    values(사용자id,음식점id);
+END //
+DELIMITER ;
+
+-- 관심매장조회
+DELIMITER //
+CREATE PROCEDURE 관심매장조회(in 사용자id BIGINT)
+BEGIN
+    select name, address_si, address_gu, detail_address, phone
+    from wishlist w inner join store s on w.store_id = s.id
+    where w.user_id = 사용자id;
+END //
+DELIMITER ;
+
+-- 포스팅조회
+DELIMITER //
+CREATE PROCEDURE 포스팅조회()
+BEGIN
+    select u.name as 사용자이름, s.name as 가게이름, title, content,photo_url
+    from posting p, user u, store s
+    where p.user_id = u.id and p.store_id = s.id;
+END //
+DELIMITER ;
+
+-- 포스팅댓글조회
+DELIMITER //
+CREATE PROCEDURE 포스팅댓글조회(in 포스팅id BIGINT)
+BEGIN
+    select name, title, content
+    from user u inner join posting_comments c on u.id = c.user_id
+    where posting_id = 포스팅id;
+END //
+DELIMITER ;
+-- 포스팅생성
+DELIMITER //
+CREATE PROCEDURE 포스팅생성(in 사용자id BIGINT, in 가게id BIGINT, in 제목 varchar(50), in 내용 varchar(1000))
+BEGIN
+    declare 포스팅권한 ENUM('Y','N');
+    select author_yn into 포스팅권한 from user where id = 사용자id;
+    CASE  포스팅권한
+      WHEN 'Y' THEN
+        insert into posting(user_id,store_id,title,content)
+        values(사용자id,가게id,제목,내용);
+      ELSE
+        select '권한이 없습니다.';
+      END case;
+END //
+DELIMITER ;

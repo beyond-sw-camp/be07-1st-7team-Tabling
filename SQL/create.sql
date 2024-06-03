@@ -1,5 +1,4 @@
-drop database tabling;
-create database tabling;
+
 use tabling;
 
 
@@ -144,7 +143,7 @@ CREATE TABLE waiting(
 CREATE TABLE `menu_category` (
 `id` BIGINT auto_increment,
 `store_id` BIGINT NOT NULL,
-`name` varchar(50),
+`name` varchar(50) NOT NULL,
 `discription` VARCHAR(100),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`store_id`) REFERENCES `store` (`id`) on delete cascade on update cascade
@@ -153,8 +152,8 @@ CREATE TABLE `menu_category` (
 CREATE TABLE `menu_title` (
 `id` BIGINT auto_increment,
 `menu_category_id` BIGINT NOT NULL,
-`name` varchar(50)NULL,
-`price` decimal NULL,
+`name` varchar(50) NOT NULL,
+`price` decimal NOT NULL,
 `discription` varchar(100),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`menu_category_id`) REFERENCES `menu_category` (`id`) on delete cascade on update cascade
@@ -167,7 +166,6 @@ user_id BIGINT,
 store_id BIGINT,
 title varchar(50) NOT NULL,
 content varchar(1000)NOT NULL,
-photo_url varchar(255),
 created_time datetime NULL DEFAULT current_timestamp,
 `updated_time` datetime DEFAULT current_timestamp,
 PRIMARY KEY (id),
@@ -188,13 +186,21 @@ id BIGINT auto_increment,
     FOREIGN KEY (`posting_id`) REFERENCES `posting` (`id`) on delete cascade on update cascade
 );
 
+CREATE TABLE posting_image (
+    id BIGINT auto_increment,
+    posting_id  BIGINT NOT NULL,
+    image_url varchar(255) null,
+    PRIMARY KEY (id),
+FOREIGN KEY (`posting_id`) REFERENCES `posting` (`id`) on delete cascade on update cascade
+);
+
 CREATE TABLE review ( 
 id bigint auto_increment primary key, 
 store_id BigInt NOT NULL, 
 user_id BigInt NOT NULL, 
 title varchar(50) NOT NULL, 
 content varchar(50) NOT NULL,
-rating float,
+rating Decimal NOT NULL,
 helpful BigInt NULL,
 foreign key (store_id) references store(id) on update cascade,
 foreign key (user_id) references user(id) on update cascade,
@@ -214,17 +220,12 @@ created_time datetime NULL DEFAULT current_timestamp,
 `updated_time` datetime DEFAULT current_timestamp);
 
 CREATE TABLE announcement (
-id BIGINT NOT NULL auto_increment primary key,
+announcement_Id BIGINT NOT NULL auto_increment primary key,
 title VARCHAR(255) NOT NULL,
 content VARCHAR(3000) NOT NULL,
 created_time datetime NULL DEFAULT current_timestamp,
 `updated_time` datetime DEFAULT current_timestamp);
 
-CREATE TABLE posting_image (
-    id BIGINT auto_increment,
-    post_id  BIGINT NOT NULL,
-    image_url varchar(255) null,
-    PRIMARY KEY (id)
-);
+
 
 show tables;
