@@ -18,5 +18,5 @@
 # 프로젝트 시연
 <details>
   <summary>가게 생성</summary>
-  <![가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/774dc95c-377a-47fe-98b0-0ad140505637)>
+  <!--내용--[가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/774dc95c-377a-47fe-98b0-0ad140505637)>
 </details>
