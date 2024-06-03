@@ -13,7 +13,7 @@
 ![ER_DIAGRAM](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/012edcd3-04dc-4ae3-bb4f-ec307c077eb5)
 
 # ERD
-![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/0b9b4bc3-dc82-41bc-875c-27b6b27f50b6)
+![ERD](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/9ee50eb0-aa84-4cbd-8aa1-c9f2b9f990d8)
 
 
 # 프로젝트 시연
