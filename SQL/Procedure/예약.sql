@@ -173,4 +173,42 @@ BEGIN
     update reservation set status='취소' where gr_id=rid;
 END
 // DELIMITER ;
--- end
+DELIMITER //
+CREATE PROCEDURE 가게생성(in 도 varchar(15),in 시 varchar(15),in 구 varchar(15),in 상세주소 varchar(15),in 경도 double,in 위도 double,in 원격대기YN varchar(15),in 현장대기YN varchar(15),in 매장명 varchar(15),in 전화번호 varchar(20))
+BEGIN
+	INSERT INTO `store`
+	(`address_do`,`address_si`,`address_gu`,`detail_address`,`location`,`remote_tabling`,`onsite_tabling`,`name`,`phone`)
+	VALUES (도,시,구,상세주소, point(경도, 위도),원격대기YN,현장대기YN,매장명,전화번호);
+END
+// DELIMITER ;
+DELIMITER //
+CREATE PROCEDURE 그룹생성(in 그룹명 varchar(15),in 상세설명 varchar(15),in 이미지 varchar(15))
+BEGIN
+	INSERT INTO `group`
+	(name, detail, profile_Img)
+	VALUES (그룹명, 상세설명, 이미지);
+END
+// DELIMITER ;
+DELIMITER //
+CREATE PROCEDURE 그룹가입(in 유저이메일 varchar(100),in 그룹명 varchar(100))
+BEGIN
+	declare uid int;
+	decalre gid int;
+	select id into uid from user where email=유저이메일;
+	select id into gid from group where name=그룹명;
+	INSERT INTO `user_group`
+	(user_id, group_id)
+	VALUES (uid,gid);
+END
+// DELIMITER ;
+CREATE PROCEDURE 포스팅생성(in 이메일 varchar(100), in 매장명 varchar(50),in 제목 varchar(50),in 내용 varchar(50),in 사진 varchar(50))
+BEGIN
+	declare uid int;
+	decalre sid int;
+	select uid into uid from user where email=이메일;
+	select sid into sid from store where name=매장명;
+	INSERT INTO `posting`
+	(user_id, store_id, title, content, photo_url)
+	VALUES (uid,sid,제목,내용,사진);
+END
+// DELIMITER ;
