@@ -1,5 +1,4 @@
-drop database tabling;
-create database tabling;
+
 use tabling;
 
 
@@ -189,10 +188,10 @@ id BIGINT auto_increment,
 
 CREATE TABLE posting_image (
     id BIGINT auto_increment,
-    post_id  BIGINT NOT NULL,
+    posting_id  BIGINT NOT NULL,
     image_url varchar(255) null,
     PRIMARY KEY (id),
-FOREIGN KEY (`posting_id`) REFERENCES `posting` (`id`) on delete cascade on update cascade,	
+FOREIGN KEY (`posting_id`) REFERENCES `posting` (`id`) on delete cascade on update cascade
 );
 
 CREATE TABLE review ( 
