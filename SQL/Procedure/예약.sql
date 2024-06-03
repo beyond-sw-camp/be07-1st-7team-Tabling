@@ -173,3 +173,4 @@ BEGIN
     update reservation set status='취소' where gr_id=rid;
 END
 // DELIMITER ;
+-- end
