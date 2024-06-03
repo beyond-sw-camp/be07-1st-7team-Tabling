@@ -112,18 +112,19 @@ CREATE TABLE store_category(
 CREATE TABLE reservation(
 	id bigint auto_increment primary key,
     store_id bigint not null,
-    user_id bigint not null,
-    group_id bigint not null,
+    user_id bigint,
+    group_id bigint,
     status enum('예약중','완료','취소') default '예약중',
     created_time datetime default current_timestamp,
     num int not null,
-    reserve_date date not null, -- '2023-06-03 14:00:00'
+    reserve_date datetime not null, -- '2023-06-03 14:00:00'
     reviewYN enum('Y','N') default 'N',
     gr_id bigint,
     foreign key (store_id) references store(id) on update cascade,
     foreign key (user_id) references user(id) on update cascade,
     foreign key (group_id) references `group`(id) on update cascade
 );
+
 CREATE TABLE waiting(
 	id bigint auto_increment primary key,
     store_id bigint not null,
