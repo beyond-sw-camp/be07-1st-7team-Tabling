@@ -10,7 +10,8 @@
 [요구사항 명세서](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/Software%20Requirements%20Specification.pdf)
 
 # ER Diagram
-![ER_DIAGRAM](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/012edcd3-04dc-4ae3-bb4f-ec307c077eb5)
+![ER diagram](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/5493a27e-180e-489d-9d34-9eb53360eb7e)
+
 
 # ERD
 ![테이블링](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/ba9c4e5e-bc79-4143-b88b-7424cdc134b7)
