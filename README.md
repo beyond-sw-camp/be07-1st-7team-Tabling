@@ -20,6 +20,12 @@
 가게 생성
 ![가게 생성](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/50abbe12-c6d5-4e46-b6cd-ad25c0de214c)
 
+지역별 매장리스트 조회
+![지역별 매장리스트 조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/ca6e6aae-20b7-4f16-b0b9-55b9f804f98b)
+
+주변식당 검색
+![주변맛집 검색](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/b08a84e6-2fd8-48d4-acf0-737be5f69279)
+
 관심매장 조회
 ![관심매장조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/6eeb3535-3887-4782-aa58-1707e7d57077)
 
@@ -29,8 +35,4 @@
 예약 생성 && 개인 예약 조회
 ![예약 생성_개인 예약 조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/309097bc-5d61-417b-b65c-aa0c0093a682)
 
-주변식당 검색
-![주변맛집 검색](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/b08a84e6-2fd8-48d4-acf0-737be5f69279)
 
-지역별 매장리스트 조회
-![지역별 매장리스트 조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/ca6e6aae-20b7-4f16-b0b9-55b9f804f98b)
