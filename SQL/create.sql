@@ -2,6 +2,7 @@ drop database tabling;
 create database tabling;
 use tabling;
 
+
 CREATE TABLE `user` (
 `id` BigInt primary key auto_increment,
 `name` varchar(50) NOT NULL,
@@ -20,7 +21,7 @@ CREATE TABLE `user` (
 `updated_time` datetime NOT NULL default current_timestamp
 );
 
--- store 테이블 생성문
+
 CREATE TABLE `store` (
 `id` BigInt primary key auto_increment,
 `address_do`varchar(15) NULL,
@@ -41,6 +42,7 @@ CREATE TABLE `store` (
 SPATIAL INDEX(location)
 );
 
+-- 
 CREATE TABLE `user_oauth` (
 `id` BigInt primary key auto_increment,
 `user_id`BigInt NOT NULL,
@@ -48,6 +50,7 @@ CREATE TABLE `user_oauth` (
 `company` enum('네이버','카카오', '애플', '페이스북', '구글') NOT NULL,
     foreign key (user_id) references user(id) on update cascade
 );
+
 
 CREATE TABLE `group` (
 `id` BigInt primary key auto_increment,
@@ -124,6 +127,7 @@ CREATE TABLE reservation(
     foreign key (user_id) references user(id) on update cascade,
     foreign key (group_id) references `group`(id) on update cascade
 );
+
 CREATE TABLE waiting(
 	id bigint auto_increment primary key,
     store_id bigint not null,
@@ -145,8 +149,6 @@ CREATE TABLE `menu_category` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`store_id`) REFERENCES `store` (`id`) on delete cascade on update cascade
 );
-
--- menu_title
 
 CREATE TABLE `menu_title` (
 `id` BIGINT auto_increment,
@@ -172,7 +174,6 @@ PRIMARY KEY (id),
 FOREIGN KEY (user_id) REFERENCES user(id) on delete set null on update cascade,
 FOREIGN KEY (store_id) REFERENCES store(id) on delete set null on update cascade
 );
-
 
 CREATE TABLE `posting_comments` (
 id BIGINT auto_increment,
@@ -211,7 +212,6 @@ foreign key (store_id) references store(id) on update cascade,
 foreign key (user_id) references user(id) on update cascade,
 created_time datetime NULL DEFAULT current_timestamp,
 `updated_time` datetime DEFAULT current_timestamp);
-
 
 CREATE TABLE announcement (
 id BIGINT NOT NULL auto_increment primary key,
