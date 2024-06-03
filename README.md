@@ -6,7 +6,7 @@
 # 프로젝트 개요
 [프로젝트 개요](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/Project_outline.pdf)
 
-# 프로젝트 요구사항 정의서
+# 프로젝트 요구사항 명세서
 [요구사항 명세서](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/blob/main/PDF%20file/Software%20Requirements%20Specification.pdf)
 
 # ER Diagram
