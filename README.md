@@ -28,7 +28,7 @@
 예약 생성 && 개인 예약 조회
 ![예약 생성_개인 예약 조회](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/309097bc-5d61-417b-b65c-aa0c0093a682)
 
-주변맛집 검색
+주변식당 검색
 ![주변맛집 검색](https://github.com/beyond-sw-camp/be07-1st-7team-Tabling/assets/55376327/b08a84e6-2fd8-48d4-acf0-737be5f69279)
 
 지역별 매장리스트 조회
