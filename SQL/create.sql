@@ -114,7 +114,7 @@ CREATE TABLE store_category(
 CREATE TABLE reservation(
 	id bigint auto_increment primary key,
     store_id bigint not null,
-    user_id bigint not null,
+    user_id bigint null,
     group_id bigint null,
     status enum('예약중','완료','취소') default '예약중',
     created_time datetime default current_timestamp,
